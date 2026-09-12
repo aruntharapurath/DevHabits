@@ -7,5 +7,5 @@ public class JwtAuthOptions
     public required string Audience { get; set; }
     public required string Key { get; set; }
     public required int ExpirationInMinutes { get; set; }
-    public required int RefreshTokenExpirationDays { get; set; }
+    public required int RefreshTokenExpirationInDays { get; set; }
 }
