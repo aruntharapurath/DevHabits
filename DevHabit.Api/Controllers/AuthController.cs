@@ -86,6 +86,7 @@ public sealed class AuthController(
         }
         var tokenRequest = new TokenRequest(identityUser.Id, identityUser.Email!);
         AccessTokenDto accessTokens = tokenProvider.Create(tokenRequest);
+
         var refreshToken = new RefreshToken
         {
             Id = Guid.CreateVersion7(),
@@ -93,6 +94,7 @@ public sealed class AuthController(
             Token = accessTokens.RefreshToken,
             ExpiresAtUtc = DateTime.UtcNow.AddDays(_jwtAuthOptions.RefreshTokenExpirationInDays)
         };
+
         identityDbContext.RefreshTokens.Add(refreshToken);
         await identityDbContext.SaveChangesAsync();
         return Ok(accessTokens);
